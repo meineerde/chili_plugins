@@ -17,7 +17,7 @@ class PluginsController < ApplicationController
       order = ORDER_BY['updated']
     end
 
-    @plugins = Plugin.order(order).page(params[:page]).includes(:author)
+    @plugins = Plugin.order(order).page(params[:page]).includes(:author, :screenshot)
     respond_with @plugins
   end
 
@@ -59,7 +59,7 @@ protected
   end
 
   def authorize
-    unless User.current.can_edit?(@plugin)
+    unless Author.current.can_edit?(@plugin)
       respond_with({:error => "You can only edit your own plugins"}, :status => :forbidden)
       return false
     end

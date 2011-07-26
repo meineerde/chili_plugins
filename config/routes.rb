@@ -1,7 +1,9 @@
 PluginRegistry::Application.routes.draw do
-  resources :plugins do
-    get 'page/:page', :action => :index, :on => :collection
-  end
+  resources :plugins
+  resources :authors
+  match 'search' => "search#index"
+
+  root :to => "plugins#index"
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

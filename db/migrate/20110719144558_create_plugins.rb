@@ -1,13 +1,16 @@
 class CreatePlugins < ActiveRecord::Migration
   def change
     create_table :plugins do |t|
-      t.string :name
-      t.string :identifier
+      t.string :name, :null => false
+      t.string :identifier, :null => false
       t.text :description
-      t.string :homepage
+      t.text :installation_instructions
+      t.string :homepage, :null => false
 
       t.references :author
+      t.references :screenshot
 
+      t.string :download_url
       t.string :repository_url
       t.string :repository_type
 

@@ -1,0 +1,50 @@
+!!!
+%html
+  %head
+    %title= @title
+    = stylesheet_link_tag    "application"
+    = javascript_include_tag "application"
+    = csrf_meta_tags
+    = yield :head
+  %body{:class => controller.controller_name}
+    %header
+      #logo
+        .title ChiliProject
+        .subtitle Plugin Registry
+        .parent_site= link_to "ChiliProject.org", "http://www.chiliproject.org"
+      %nav
+        .account_links
+          Welcome back
+        %ul.primary_links
+          %li#index_link{:class => ("here" if @selected == :home)}
+            = link_to "Home", root_path
+          %li#index_link{:class => ("here" if @selected == :plugins)}
+            = link_to "Plugins", plugins_path
+          %li#authors_link{:class => ("here" if @selected == :authors)}
+            = link_to "Authors", authors_path
+          %li#search_link{:class => ("here" if @selected == :search)}
+            = link_to "Search", search_path
+    - if content_for? :head
+      #head
+        = yield :header
+    %content
+      - flash.keys.each do |key|
+        %p{:id=>key}= flash[key]
+      - if content_for? :actions
+        #actions
+          = yield :actions
+      - unless (@h1 || @title).blank?
+        %h1= @h1 || h(@title)
+      = yield
+
+    - if content_for? :sidebar
+      %sidebar
+        = yield :sidebar
+
+  %footer
+    %p
+      The <a href="https://github.com/chiliproject/plugin-registry">source code</a>
+      for this website is available on GitHub. Contact us on the
+      <a href="https://www.chiliproject.org/projects/chiliproject/boards">ChiliProject Forums</a>
+      if you are interested in contributing, or just send us a pull request.
+      Please direct bug reports, feature requests, and comments to the <a href="https://www.chiliproject.org/projects/chiliproject/issues">issue tracker</a>.

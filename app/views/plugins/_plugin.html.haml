@@ -1,0 +1,17 @@
+section.plugin
+  - unless defined?(hide_screenshot) && hide_screenshot
+    - if plugin.screenshot
+      .screenshot= image_tag plugin.screenshot.url(:thumb), :width=>120, :alt => "Screenshot of #{plugin.name}"
+    -else
+      .screenshot= image_tag "missing_thumb.png", :alt => t(:no_screenshot)
+
+  .info
+    .name
+      = link_to plugin.name, plugin
+      - unless defined?(hide_edit) && hide_edit
+        = link_to "Edit", edit_plugin_path(plugin), :class=>"action" if Author.current.can_edit?(plugin)
+        .description= plugin.short_description
+      - unless defined? hide_author && hide_author
+        .authored
+          by
+          = link_to_author plugin.author

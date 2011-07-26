@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110724121437) do
+ActiveRecord::Schema.define(:version => 20110724140051) do
 
   create_table "authors", :force => true do |t|
     t.string   "name",       :null => false
@@ -20,11 +20,14 @@ ActiveRecord::Schema.define(:version => 20110724121437) do
   end
 
   create_table "plugins", :force => true do |t|
-    t.string   "name"
-    t.string   "identifier"
+    t.string   "name",                      :null => false
+    t.string   "identifier",                :null => false
     t.text     "description"
-    t.string   "homepage"
+    t.text     "installation_instructions"
+    t.string   "homepage",                  :null => false
     t.integer  "author_id"
+    t.integer  "screenshot_id"
+    t.string   "download_url"
     t.string   "repository_url"
     t.string   "repository_type"
     t.datetime "created_at"
@@ -32,5 +35,14 @@ ActiveRecord::Schema.define(:version => 20110724121437) do
   end
 
   add_index "plugins", ["identifier"], :name => "index_plugins_on_identifier", :unique => true
+
+  create_table "screenshots", :force => true do |t|
+    t.integer  "plugin_id"
+    t.string   "image_file_name"
+    t.string   "image_content_type"
+    t.string   "image_file_size"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
 end

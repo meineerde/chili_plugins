@@ -5,3 +5,12 @@
 #
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
+
+author = Author.create(name: "Holger Just", login: "hjust")
+Plugin.create(
+  identifier: "chiliproject_check",
+  name: "Check",
+  description: "",
+  author: author,
+  homepage: ""
+)

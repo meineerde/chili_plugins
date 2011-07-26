@@ -2,4 +2,9 @@
 # See https://github.com/svenfuchs/rails-i18n/tree/master/rails%2Flocale for starting points.
 
 en:
-  hello: "Hello world"
+  plugins:
+    index:
+      order_by_name: "by name"
+      order_by_updated: "by edit date (latest first)"
+
+  no_screenshot: "No screenshot available"

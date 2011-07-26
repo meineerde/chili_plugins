@@ -12,8 +12,9 @@ gem 'uglifier'
 
 gem 'jquery-rails'
 
-# Pagination
 gem 'kaminari', "~> 0.12.4"
+gem 'friendly_id', "~> 3.2.1"
+gem "paperclip", "~> 2.3"
 
 group :test do
   # To use debugger
